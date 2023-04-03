@@ -1,21 +1,23 @@
 package br.com.lucas.Container.Store.http.controler;
 
 import br.com.lucas.Container.Store.entity.Cliente;
-import br.com.lucas.Container.Store.service.ClienteService;
+import br.com.lucas.Container.Store.http.controler.dto.filter.ClientFilter;
+import br.com.lucas.Container.Store.service.ClienteServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
     @Autowired
-    private ClienteService clienteService;
+    private ClienteServiceImpl clienteService;
     @Autowired
     private ModelMapper modelMapper;
     @PostMapping
@@ -25,8 +27,8 @@ public class ClienteController {
     }
     @GetMapping(path = "/list")
     @ResponseStatus(HttpStatus.OK)
-    public List<Cliente> listCliente(){
-        return clienteService.listingClientes();
+    public Page<Cliente> listCliente(ClientFilter clientFilter, Pageable pageable){
+        return clienteService.listingClientes(clientFilter, pageable);
     }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
