@@ -1,17 +1,10 @@
 spring:
-
   datasource:
-    url: jdbc:h2:mem:market
-    username: sa
-    password:
-    driverClassname: org.h2.Driver
-
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3300/containerMarket
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    properties.hibernate.show_sql: true
-    properties.hibernate.format_sql: true
-
-  h2:
-    console:
-      enabled: true
-      path: /h2
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
