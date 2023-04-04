@@ -3,6 +3,7 @@ package br.com.lucas.Container.Store.http.controler;
 import br.com.lucas.Container.Store.entity.Cliente;
 import br.com.lucas.Container.Store.http.controler.dto.filter.ClientFilter;
 import br.com.lucas.Container.Store.service.ClienteServiceImpl;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,7 @@ public class ClienteController {
     private ModelMapper modelMapper;
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save(@RequestBody Cliente cliente){
+    public Cliente save(@RequestBody @Valid Cliente cliente){
         return clienteService.saving(cliente);
     }
     @GetMapping(path = "/list")
