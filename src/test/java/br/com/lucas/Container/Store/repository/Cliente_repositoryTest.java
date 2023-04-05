@@ -1,6 +1,7 @@
 package br.com.lucas.Container.Store.repository;
 
 import br.com.lucas.Container.Store.entity.Cliente;
+import br.com.lucas.Container.Store.util.ClienteCreator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,9 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class Cliente_repositoryTest {
     @Autowired
     Cliente_repository clienteRepository;
+
     @Test
     void save_InsertClientWhenSuccessful(){
-        Cliente clienteTobeSaved = createCliente();
+        Cliente clienteTobeSaved = ClienteCreator.createClienteTobeSaved();
         Cliente ClienteSaved = this.clienteRepository.save(clienteTobeSaved);
         Assertions.assertThat(ClienteSaved).isNotNull();
         Assertions.assertThat(ClienteSaved.getId()).isNotNull();
@@ -28,7 +30,7 @@ class Cliente_repositoryTest {
     }
     @Test
     void update_UpdateClientWhenSuccessful(){
-        Cliente clienteTobeSaved = createCliente();
+        Cliente clienteTobeSaved = ClienteCreator.createClienteTobeSaved();
         Cliente ClienteSaved = this.clienteRepository.save(clienteTobeSaved);
         ClienteSaved.setName("dudumalah");
         ClienteSaved.setCpf("56690552098");
@@ -46,7 +48,7 @@ class Cliente_repositoryTest {
     }
     @Test
     void delete_UpdateClientWhenSuccessful(){
-        Cliente clienteTobeSaved = createCliente();
+        Cliente clienteTobeSaved = ClienteCreator.createClienteTobeSaved();
         Cliente ClienteSaved = this.clienteRepository.save(clienteTobeSaved);
 
         this.clienteRepository.delete(clienteTobeSaved);
@@ -57,7 +59,7 @@ class Cliente_repositoryTest {
     }
     @Test
     void FindbyID_UpdateClientWhenSuccessful(){
-        Cliente clienteTobeSaved = createCliente();
+        Cliente clienteTobeSaved = ClienteCreator.createClienteTobeSaved();
         Cliente ClienteSaved = this.clienteRepository.save(clienteTobeSaved);
 
 
@@ -67,9 +69,4 @@ class Cliente_repositoryTest {
         Assertions.assertThat(clientes).contains(ClienteSaved);
     }
 
-    private Cliente createCliente(){
-        return Cliente.builder().
-                name("stallonseis").cpf("48579352010").
-                password("12345678").email("stallone@gmail.com").build();
-    }
 }

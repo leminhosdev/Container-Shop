@@ -23,10 +23,10 @@ public class Cliente {
     @Column(name = "name", nullable = false)
     @Pattern(regexp = "[A-Za-z]+")
     private String name;
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     @Email(message = "invalid Email")
     private String email;
-    @Column(name = "cpf", nullable = false)
+    @Column(name = "cpf", nullable = false, unique = true)
     @CPF(message = "invalid CPF")
     private String cpf;
     @Column(name = "password", nullable = false, length = 100)
