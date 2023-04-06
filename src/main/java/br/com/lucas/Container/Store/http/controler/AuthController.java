@@ -2,6 +2,7 @@ package br.com.lucas.Container.Store.http.controler;
 
 import br.com.lucas.Container.Store.entity.Cliente;
 import br.com.lucas.Container.Store.http.controler.dto.filter.Login;
+import br.com.lucas.Container.Store.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private TokenService tokenService;
     @PostMapping("/login")
     public String login(@RequestBody Login login){
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
@@ -23,6 +26,6 @@ public class AuthController {
                 authenticate(usernamePasswordAuthenticationToken);
 
         var user = (Cliente)authenticate.getPrincipal();
-        return
+        return tokenService.gerarToken(user);
     }
 }
