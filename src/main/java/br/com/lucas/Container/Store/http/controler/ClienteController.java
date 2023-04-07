@@ -24,6 +24,7 @@ public class ClienteController {
     private ClienteServiceImpl clienteService;
     @Autowired
     private Cliente_repository clienteRepository;
+
     private final PasswordEncoder encoder;
     @Autowired
     private ModelMapper modelMapper;
