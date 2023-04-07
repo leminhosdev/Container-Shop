@@ -23,16 +23,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @Configuration
 public class JWTconfiguration {
-   // @Autowired
-   // private  DetailsClienteServiceimpl clienteService;
-   // @Autowired
-  //  private  PasswordEncoder passwordEncoder;
 
-
-   // public JWTconfiguration(DetailsClienteServiceimpl clienteService, PasswordEncoder passwordEncoder) {
-   //     this.clienteService = clienteService;
-  //      this.passwordEncoder = passwordEncoder;
-   // }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.httpBasic()
