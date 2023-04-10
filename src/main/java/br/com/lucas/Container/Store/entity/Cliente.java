@@ -1,5 +1,6 @@
 package br.com.lucas.Container.Store.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
@@ -33,6 +34,7 @@ public class Cliente  {
     @Column(name = "password", nullable = false, length = 100)
     @Size(min = 8, message = "Your password must have minimum 8 digits")
     private String password;
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",

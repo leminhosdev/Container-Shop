@@ -1,5 +1,6 @@
 package br.com.lucas.Container.Store.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class Role {
     private Long id;
     @Column(nullable = false, unique = true)
     private String name;
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private List<Cliente> clientes = new ArrayList<>();
 
