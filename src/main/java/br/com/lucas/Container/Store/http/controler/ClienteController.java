@@ -67,7 +67,7 @@ public class ClienteController {
             return Void.TYPE;
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente not found, update failed"));
     }
-    @GetMapping("/validate")
+   /* @GetMapping("/validate")
     public ResponseEntity<Boolean> validatePassword(@RequestParam String email, String password ){
 
         Optional<Cliente> optionalCliente = clienteRepository.findByEmail(email);
@@ -80,5 +80,5 @@ public class ClienteController {
         HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
 
         return ResponseEntity.status(status).body(valid);
-    }
+    } */
 }
