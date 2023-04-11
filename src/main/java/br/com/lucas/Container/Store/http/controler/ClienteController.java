@@ -1,6 +1,7 @@
 package br.com.lucas.Container.Store.http.controler;
 
 import br.com.lucas.Container.Store.entity.Cliente;
+import br.com.lucas.Container.Store.entity.Profile;
 import br.com.lucas.Container.Store.http.controler.dto.filter.ClientFilter;
 import br.com.lucas.Container.Store.repository.Cliente_repository;
 import br.com.lucas.Container.Store.service.ClienteServiceImpl;
@@ -12,9 +13,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -31,6 +35,37 @@ public class ClienteController {
 
     public ClienteController(PasswordEncoder encoder) {
         this.encoder = encoder;
+    }
+
+    @GetMapping("/register")
+    public ModelAndView register(){
+        ModelAndView mv = new ModelAndView("cliente/register");
+        mv.addObject("user", new Cliente());
+        mv.addObject("profiles", Profile.values());
+        return mv;
+    }
+
+    @PostMapping("/register")
+    public ModelAndView register(@ModelAttribute @RequestBody @Valid Cliente cliente){
+        ModelAndView mv = new ModelAndView("cliente/register");
+        mv.addObject("user", cliente);
+        try {
+            cliente.setPassword(encoder.encode(cliente.getPassword()));
+            System.out.println("saved");
+            clienteService.saving(cliente);
+            return home();
+        }catch (Exception e){
+            mv.addObject(e.getMessage());
+            System.out.println("deu b.o salvando");
+        }
+        return home();
+    }
+    @GetMapping("/inicio")
+    public ModelAndView home(){
+        List<Cliente> clienteList = this.clienteService.findall();
+        ModelAndView mv = new ModelAndView("ReadThis");
+        mv.addObject("clienteList", clienteList);
+        return mv;
     }
 
     @PostMapping
@@ -67,18 +102,5 @@ public class ClienteController {
             return Void.TYPE;
         }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente not found, update failed"));
     }
-   /* @GetMapping("/validate")
-    public ResponseEntity<Boolean> validatePassword(@RequestParam String email, String password ){
 
-        Optional<Cliente> optionalCliente = clienteRepository.findByEmail(email);
-        if(optionalCliente.isEmpty()){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
-        }
-
-        Cliente cliente = optionalCliente.get();
-        boolean valid = encoder.matches(password,cliente.getPassword());
-        HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-
-        return ResponseEntity.status(status).body(valid);
-    } */
 }

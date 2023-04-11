@@ -14,4 +14,6 @@ public interface ClienteService {
     Page<Cliente> listingClientes(ClientFilter clientFilter, Pageable pageable);
     Optional<Cliente> searchById(Long id);
     void deletedById(Long id);
+
+    List<Cliente> findall();
 }

@@ -34,20 +34,5 @@ public class Cliente  {
     @Column(name = "password", nullable = false, length = 100)
     @Size(min = 8, message = "Your password must have minimum 8 digits")
     private String password;
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
-    )
-    private List<Role> roles = new ArrayList<>();
 
-    public Cliente(String name, String email, String cpf, String password, List<Role> roles) {
-        this.name = name;
-        this.email = email;
-        this.cpf = cpf;
-        this.password = password;
-        this.roles = roles;
-    }
 }
