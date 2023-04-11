@@ -3,6 +3,7 @@ package br.com.lucas.Container.Store.http.controler;
 import br.com.lucas.Container.Store.entity.Cliente;
 import br.com.lucas.Container.Store.entity.Profile;
 import br.com.lucas.Container.Store.http.controler.dto.filter.ClientFilter;
+import br.com.lucas.Container.Store.http.controler.dto.filter.HomeController;
 import br.com.lucas.Container.Store.repository.Cliente_repository;
 import br.com.lucas.Container.Store.service.ClienteServiceImpl;
 import jakarta.validation.Valid;
@@ -63,10 +64,11 @@ public class ClienteController {
     @GetMapping("/inicio")
     public ModelAndView home(){
         List<Cliente> clienteList = this.clienteService.findall();
-        ModelAndView mv = new ModelAndView("ReadThis");
+        ModelAndView mv = new ModelAndView("home");
         mv.addObject("clienteList", clienteList);
         return mv;
     }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
