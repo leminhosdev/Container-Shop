@@ -5,10 +5,7 @@ import br.com.lucas.Container.Store.entity.Profile;
 import br.com.lucas.Container.Store.repository.Cliente_repository;
 import br.com.lucas.Container.Store.service.ClienteServiceImpl;
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,18 +33,16 @@ public class HomeController {
         try {
             System.out.println("saved");
             clienteService.saving(cliente);
-            return home();
+            return loginFE();
         }catch (Exception e){
             mv.addObject(e.getMessage());
             System.out.println("deu b.o salvando");
         }
-        return home();
+        return loginFE();
     }
-    @GetMapping("/inicio")
-    public ModelAndView home(){
-        List<Cliente> clienteList = this.clienteService.findall();
-        ModelAndView mv = new ModelAndView("home");
-        mv.addObject("clienteList", clienteList);
+    @GetMapping("/login")
+    public ModelAndView loginFE(){
+        ModelAndView mv = new ModelAndView("login");
         return mv;
     }
 

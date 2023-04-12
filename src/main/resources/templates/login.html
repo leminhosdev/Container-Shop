@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tela de Login</title>
+  <style>
+    .container {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div class="container">
+  <h1>Tela de Login</h1>
+  <form action="/login" method="post">
+    <input type="email" id="email" name="email" placeholder="Email" required>
+    <input type="password" id="password" name="password" placeholder="Senha" required>
+    <button type="submit">Entrar</button>
+  </form>
+</div>
+</body>
+</html>
