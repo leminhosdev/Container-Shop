@@ -25,12 +25,6 @@ public class ClienteServiceImpl implements ClienteService{
     private final Cliente_repository clienteRepository;
 
 
-
-
-    @Override
-    public Cliente findUserByEmail(String email) {
-        return clienteRepository.findByEmail(email);
-    }
     public Cliente saving(Cliente cliente){
         return clienteRepository.save(cliente);
     }

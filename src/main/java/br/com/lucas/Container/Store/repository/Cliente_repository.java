@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface Cliente_repository extends JpaRepository<Cliente , Long> {
-    //Optional<Cliente> findByEmail(String email);
-    Cliente findByEmail(String email);
+    Optional<Cliente> findByEmail(String email);
+
 
 }

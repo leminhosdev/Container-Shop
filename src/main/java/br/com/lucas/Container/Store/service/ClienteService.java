@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ClienteService {
-    Cliente findUserByEmail(String email);
+
     Cliente saving(Cliente cliente);
     Page<Cliente> listingClientes(ClientFilter clientFilter, Pageable pageable);
     Optional<Cliente> searchById(Long id);
