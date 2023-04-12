@@ -22,9 +22,5 @@ public class ContainerStoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ContainerStoreApplication.class, args);
 	}
-	@Bean
-	public PasswordEncoder getPasswordEnconder(){
-		BCryptPasswordEncoder encoder =  new BCryptPasswordEncoder();
-		return encoder;
-	}
+
 }

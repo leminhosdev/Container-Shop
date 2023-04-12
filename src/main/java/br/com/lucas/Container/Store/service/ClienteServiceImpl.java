@@ -24,7 +24,7 @@ public class ClienteServiceImpl implements ClienteService{
 
     private final Cliente_repository clienteRepository;
 
-    private final PasswordEncoder passwordEncoder;
+
 
 
     @Override

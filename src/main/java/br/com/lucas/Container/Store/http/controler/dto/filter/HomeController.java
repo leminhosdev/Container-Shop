@@ -4,6 +4,7 @@ import br.com.lucas.Container.Store.entity.Cliente;
 import br.com.lucas.Container.Store.entity.Profile;
 import br.com.lucas.Container.Store.repository.Cliente_repository;
 import br.com.lucas.Container.Store.service.ClienteServiceImpl;
+import br.com.lucas.Container.Store.util.PasswordUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,8 @@ public class HomeController {
     public ModelAndView register(@ModelAttribute @RequestBody @Valid Cliente cliente){
         ModelAndView mv = new ModelAndView("cliente/register");
         mv.addObject("user", cliente);
+        String passwordEnconder = PasswordUtil.encoder(cliente.getPassword());
+        cliente.setPassword(passwordEnconder);
         try {
             System.out.println("saved");
             clienteService.saving(cliente);

@@ -6,6 +6,7 @@ import br.com.lucas.Container.Store.http.controler.dto.filter.ClientFilter;
 import br.com.lucas.Container.Store.http.controler.dto.filter.HomeController;
 import br.com.lucas.Container.Store.repository.Cliente_repository;
 import br.com.lucas.Container.Store.service.ClienteServiceImpl;
+import br.com.lucas.Container.Store.util.PasswordUtil;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,50 +31,16 @@ public class ClienteController {
     @Autowired
     private Cliente_repository clienteRepository;
 
-    private final PasswordEncoder encoder;
     @Autowired
     private ModelMapper modelMapper;
 
-    public ClienteController(PasswordEncoder encoder) {
-        this.encoder = encoder;
-    }
-
-    @GetMapping("/register")
-    public ModelAndView register(){
-        ModelAndView mv = new ModelAndView("cliente/register");
-        mv.addObject("user", new Cliente());
-        mv.addObject("profiles", Profile.values());
-        return mv;
-    }
-
-    @PostMapping("/register")
-    public ModelAndView register(@ModelAttribute @RequestBody @Valid Cliente cliente){
-        ModelAndView mv = new ModelAndView("cliente/register");
-        mv.addObject("user", cliente);
-        try {
-            cliente.setPassword(encoder.encode(cliente.getPassword()));
-            System.out.println("saved");
-            clienteService.saving(cliente);
-            return home();
-        }catch (Exception e){
-            mv.addObject(e.getMessage());
-            System.out.println("deu b.o salvando");
-        }
-        return home();
-    }
-    @GetMapping("/inicio")
-    public ModelAndView home(){
-        List<Cliente> clienteList = this.clienteService.findall();
-        ModelAndView mv = new ModelAndView("home");
-        mv.addObject("clienteList", clienteList);
-        return mv;
-    }
 
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente save(@RequestBody @Valid Cliente cliente){
-        cliente.setPassword(encoder.encode(cliente.getPassword()));
+       String HashMapPassword = PasswordUtil.encoder(cliente.getPassword());
+       cliente.setPassword(HashMapPassword);
         return clienteService.saving(cliente);
     }
     @GetMapping(path = "/list")
