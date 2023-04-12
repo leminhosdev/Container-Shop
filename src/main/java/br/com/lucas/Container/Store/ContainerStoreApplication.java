@@ -7,10 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
+@SpringBootApplication //(exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
 //@ComponentScan({"br.com.lucas.Container.Store"})
 public class ContainerStoreApplication {
 	@Bean
@@ -19,6 +20,7 @@ public class ContainerStoreApplication {
 		modelMapper.getConfiguration().setSkipNullEnabled(true);
 		return modelMapper;
 	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(ContainerStoreApplication.class, args);
 	}

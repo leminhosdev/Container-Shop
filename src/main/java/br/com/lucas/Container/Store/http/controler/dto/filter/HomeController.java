@@ -45,7 +45,7 @@ public class HomeController {
     }
     @GetMapping("/login")
     public ModelAndView loginFE(){
-        ModelAndView mv = new ModelAndView("login");
+        ModelAndView mv = new ModelAndView("templates/login");
         return mv;
     }
 
