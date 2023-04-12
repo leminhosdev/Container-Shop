@@ -29,7 +29,7 @@ public class HomeController {
         return mv;
     }
 
-    @PostMapping("/register-cliente")
+    @PostMapping("/register")
     public ModelAndView register(@ModelAttribute @RequestBody @Valid Cliente cliente){
         ModelAndView mv = new ModelAndView("cliente/register");
         mv.addObject("user", cliente);
