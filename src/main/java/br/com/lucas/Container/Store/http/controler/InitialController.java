@@ -48,8 +48,13 @@ public class InitialController {
         return mv;
     }
     @GetMapping("/inicio")
-    public ModelAndView homePage(){
+    public ModelAndView initialPage(){
         ModelAndView mv = new ModelAndView("inicio/inicio");
+        return mv;
+    }
+    @GetMapping("/home")
+    public ModelAndView homePage(){
+        ModelAndView mv = new ModelAndView("home/home");
         return mv;
     }
 }
