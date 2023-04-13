@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@SpringBootApplication //(exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
+@SpringBootApplication (exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
 //@ComponentScan({"br.com.lucas.Container.Store"})
 public class ContainerStoreApplication {
 	@Bean

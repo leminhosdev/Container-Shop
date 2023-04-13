@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 public class HomeController {
+
     @Autowired
     private ClienteServiceImpl clienteService;
     @Autowired
@@ -43,13 +44,16 @@ public class HomeController {
         }
         return loginFE();
     }
+
     @GetMapping("/login")
     public ModelAndView loginFE(){
-        ModelAndView mv = new ModelAndView("templates/login");
+        ModelAndView mv = new ModelAndView("login/login");
         return mv;
     }
-
-
-
+    @GetMapping("/home")
+    public ModelAndView homePage(){
+        ModelAndView mv = new ModelAndView("home/home");
+        return mv;
+    }
 
 }

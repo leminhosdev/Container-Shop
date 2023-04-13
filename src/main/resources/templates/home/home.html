@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Inicial</title>
+    <style>
+    .container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+p {
+    margin-top: -15px;
+    font-size: 18px;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+    </style>
+    <link rel="stylesheet" th:href="@{/css/style.css}" /> <!-- Arquivo CSS externo -->
+</head>
+<body>
+<div class="container">
+    <h1>Bem-vindo(a)!</h1>
+    <p>Escolha uma opção:</p>
+    <div class="buttons">
+        <a th:href="@{/register}" class="btn">Registrar</a> <!-- Botão para a página de registro -->
+        <a th:href="@{/login}" class="btn">Login</a> <!-- Botão para a página de login -->
+    </div>
+</div>
+</body>
+</html>
