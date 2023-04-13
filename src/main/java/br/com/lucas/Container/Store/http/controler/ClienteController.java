@@ -3,7 +3,7 @@ package br.com.lucas.Container.Store.http.controler;
 import br.com.lucas.Container.Store.entity.Cliente;
 import br.com.lucas.Container.Store.entity.Profile;
 import br.com.lucas.Container.Store.http.controler.dto.filter.ClientFilter;
-import br.com.lucas.Container.Store.http.controler.dto.filter.HomeController;
+
 import br.com.lucas.Container.Store.repository.Cliente_repository;
 import br.com.lucas.Container.Store.service.ClienteServiceImpl;
 import br.com.lucas.Container.Store.util.PasswordUtil;

@@ -1,4 +1,4 @@
-package br.com.lucas.Container.Store.http.controler.dto.filter;
+package br.com.lucas.Container.Store.http.controler;
 
 import br.com.lucas.Container.Store.entity.Cliente;
 import br.com.lucas.Container.Store.entity.Profile;
@@ -9,13 +9,10 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
-
 @RestController
-public class HomeController {
-
+public class InitialController {
     @Autowired
+
     private ClienteServiceImpl clienteService;
     @Autowired
     private Cliente_repository clienteRepository;
@@ -50,10 +47,9 @@ public class HomeController {
         ModelAndView mv = new ModelAndView("login/login");
         return mv;
     }
-    @GetMapping("/home")
+    @GetMapping("/inicio")
     public ModelAndView homePage(){
-        ModelAndView mv = new ModelAndView("home/home");
+        ModelAndView mv = new ModelAndView("inicio/inicio");
         return mv;
     }
-
 }

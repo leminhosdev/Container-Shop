@@ -23,6 +23,7 @@ public class WebConfigProject {
                 .and()
                 .csrf().disable();
         return http.build();
+
     }
 
     @Bean

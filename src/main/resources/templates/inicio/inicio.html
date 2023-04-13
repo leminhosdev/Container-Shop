@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Página Inicial</title>
-    <style>
+  <meta charset="UTF-8">
+  <title>Página Inicial</title>
+  <style>
     .container {
     max-width: 600px;
     margin: 0 auto;
@@ -38,16 +38,16 @@ p {
     background-color: #0056b3;
 }
     </style>
-    <link rel="stylesheet" th:href="@{/css/style.css}" /> <!-- Arquivo CSS externo -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" /> <!-- Arquivo CSS externo -->
 </head>
 <body>
 <div class="container">
-    <h1>Bem-vindo(a)!</h1>
-    <p>Escolha uma opção:</p>
-    <div class="buttons">
-        <a th:href="@{/register}" class="btn">Registrar</a> <!-- Botão para a página de registro -->
-        <a th:href="@{/login}" class="btn">Login</a> <!-- Botão para a página de login -->
-    </div>
+  <h1>Bem-vindo(a)!</h1>
+  <p>Escolha uma opção:</p>
+  <div class="buttons">
+    <a th:href="@{/register}" class="btn">Create account</a> <!-- Botão para a página de registro -->
+    <a th:href="@{/login}" class="btn">Login</a> <!-- Botão para a página de login -->
+  </div>
 </div>
 </body>
 </html>
