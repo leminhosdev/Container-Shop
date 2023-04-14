@@ -20,18 +20,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebConfigProject {
-
     @Autowired
     private ClienteUserDetailsServiceImpl clienteUserDetailsService;
-
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .httpBasic()
                 .and()
                 .authorizeHttpRequests().
-                requestMatchers("/inicio").permitAll()
+                requestMatchers("/templates/home/**").permitAll()
+                .requestMatchers("/templates/login/**").permitAll()
+                .requestMatchers("/templates/register/**").permitAll()
+                .requestMatchers("/inicio").permitAll()
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/login").permitAll()
                 .anyRequest().authenticated().and().
@@ -39,8 +39,6 @@ public class WebConfigProject {
 
         return http.build();
     }
-
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
