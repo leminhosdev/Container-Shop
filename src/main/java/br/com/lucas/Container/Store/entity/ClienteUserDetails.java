@@ -20,6 +20,7 @@ public class ClienteUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
+
         return cliente.getPassword();
     }
 

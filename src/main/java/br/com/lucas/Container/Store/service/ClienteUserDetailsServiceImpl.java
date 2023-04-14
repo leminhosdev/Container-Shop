@@ -18,6 +18,6 @@ public class ClienteUserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Cliente cliente = clienteRepository.findByEmail(email).
                 orElseThrow(() -> new UsernameNotFoundException("Email not found"));
-        return new ClienteUserDetails(cliente);
+        return new  ClienteUserDetails(cliente);
     }
 }
