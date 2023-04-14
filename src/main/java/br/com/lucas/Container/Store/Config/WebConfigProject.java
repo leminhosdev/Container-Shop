@@ -31,9 +31,9 @@ public class WebConfigProject {
                 .httpBasic()
                 .and()
                 .authorizeHttpRequests().
-                requestMatchers("/templates/cliente/**").permitAll()
-                .requestMatchers("/templates/login/**").permitAll()
-                .requestMatchers("/templates/inicio/**").permitAll()
+                requestMatchers("/inicio").permitAll()
+                .requestMatchers("/register").permitAll()
+                .requestMatchers("/login").permitAll()
                 .anyRequest().authenticated().and().
                 formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll();
 
