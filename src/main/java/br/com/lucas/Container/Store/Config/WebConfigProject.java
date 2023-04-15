@@ -28,9 +28,9 @@ public class WebConfigProject {
                 .httpBasic()
                 .and()
                 .authorizeHttpRequests().
-                requestMatchers("/templates/home/**").permitAll()
+                requestMatchers("/templates/register/**").permitAll()
                 .requestMatchers("/templates/login/**").permitAll()
-                .requestMatchers("/templates/register/**").permitAll()
+                .requestMatchers("/templates/home/**").permitAll()
                 .requestMatchers("/inicio").permitAll()
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/login").permitAll()
