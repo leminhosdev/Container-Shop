@@ -1,32 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Logado com sucesso</title>
+  <title>Tela Home</title>
+  <meta charset="utf-8">
   <style>
-    .container {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 100px;
-}
+        /* Estilos CSS para a barra de navegação */
+        .navbar {
+            background-color: orange; /* Cor de fundo laranja */
+            height: 50px; /* Altura da barra de navegação */
+            display: flex; /* Exibir os itens em linha */
+            justify-content: center; /* Centralizar horizontalmente os itens */
+            align-items: center; /* Centralizar verticalmente os itens */
+            padding: 0 20px; /* Espaçamento interno esquerdo e direito */
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombreamento leve */
+        }
 
-h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
-}
+        .navbar ul {
+            list-style-type: none; /* Remover a lista de marcadores */
+            margin: 0; /* Remover as margens */
+            padding: 0; /* Remover o espaçamento interno */
+            display: flex; /* Exibir os itens em linha */
+            align-items: center; /* Centralizar verticalmente os itens */
+        }
 
-p {
-    font-size: 18px;
-    margin-top: -15px;
-}
-  </style>
+        .navbar li {
+            margin-left: 10px; /* Espaçamento entre os itens da lista */
+        }
 
+        .navbar li a {
+            color: white; /* Cor do texto dos itens */
+            text-decoration: none; /* Remover sublinhado dos links */
+        }
+
+        .navbar li a:hover {
+            text-decoration: underline; /* Sublinhar os links ao passar o mouse */
+        }
+
+        /* Estilos CSS para o conteúdo da página */
+        .content {
+            margin-top: 50px; /* Dar espaço para a barra de navegação */
+            padding: 20px; /* Espaçamento interno */
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <h1>Você se logou!</h1>
-  <p>Obrigado por fazer login.</p>
+<div class="navbar">
+  <ul>
+    <li><a th:href="@{/home}">Home</a></li>
+    <li><a th:href="@{/profile}">Perfil</a></li>
+    <li><a th:href="@{/settings}">Configurações</a></li>
+    <li><a th:href="@{/logout}">Logout</a></li>
+  </ul>
+</div>
+<div class="content">
+  <h1>Bem-vindo à Tela Home</h1>
+  <!-- Conteúdo da página Home -->
+  <p>Olá, usuário!</p>
+  <p>Aqui está o conteúdo da página Home.</p>
 </div>
 </body>
 </html>
