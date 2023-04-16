@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <title>Tela Home</title>
   <meta charset="utf-8">
@@ -53,7 +53,7 @@
   </ul>
 </div>
 <div class="content">
-  <h1>Bem-vindo à Tela Home</h1>
+  <h1>Bem-vindo(a),<span sec:authentication="name"></span> à Tela Home</h1>
   <!-- Conteúdo da página Home -->
   <p>Olá, usuário!</p>
   <p>Aqui está o conteúdo da página Home.</p>
