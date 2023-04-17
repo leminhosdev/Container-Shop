@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
-public class Scraping {
+public class ScrapConfiguration {
     private String path= "C:\\Users\\lemos\\IdeaProjects\\PROJETOS 2.0\\Container-Store\\src\\main\\java\\br\\com\\lucas\\Container\\Store\\Content\\WebScraping.txt";
-    private String link  = "https://opensea.io/collection/thecaptainz/analytics";
+    private String link  = "https://opensea.io/collection/analytics";
     private OutputStreamWriter writer;
 
-    public Scraping(){
+    public ScrapConfiguration(){
         configFile();
     }
 
@@ -19,6 +19,7 @@ public class Scraping {
 
             if(!archirve.exists()){
                 archirve.createNewFile();
+
             }
             writer = new OutputStreamWriter(new FileOutputStream(archirve), "UTF-8");
             writer.write("Floor Price\tVolume\tSales");
@@ -28,5 +29,15 @@ public class Scraping {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+    private void executar(){
+        while(true){
+
+
+        }
+    }
+
+    private void formateLink(String collection){
+        this.link = "https://opensea.io/collection/"+collection+"/analytics";
     }
 }
