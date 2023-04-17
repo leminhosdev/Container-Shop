@@ -1,5 +1,6 @@
 package br.com.lucas.Container.Store;
 
+import br.com.lucas.Container.Store.Content.Scraping;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
@@ -23,6 +24,10 @@ public class ContainerStoreApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ContainerStoreApplication.class, args);
+		new Scraping();
+
 	}
+
+
 
 }
