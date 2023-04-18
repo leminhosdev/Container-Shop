@@ -3,6 +3,8 @@ package br.com.lucas.Container.Store;
 import br.com.lucas.Container.Store.Content.ScrapConfiguration;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
@@ -28,7 +30,12 @@ public class ContainerStoreApplication {
 		String html = "https://opensea.io/collection/azuki/analytics";
 		try{
 			Document doc = Jsoup.connect(html).userAgent("Mozilla").get();;
-			System.out.println(doc);
+			Elements elements = doc.getElementsByClass("sc-29427738-0 sc-d58c749b-1 ILliQ jsHA-dC");
+			Element priceelenmnt = doc.select("sc-29427738-0 sc-d58c749b-1 ILliQ jsHA-dC").first();
+			System.out.println(priceelenmnt);
+			for(Element c: elements){
+				System.out.println(c);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
