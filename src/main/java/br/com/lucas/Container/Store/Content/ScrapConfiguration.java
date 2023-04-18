@@ -11,7 +11,7 @@ public class ScrapConfiguration {
 
     public ScrapConfiguration(){
         configFile();
-        Scrap.search("https://opensea.io/collection/azuki/analytics", writer);
+       executar();
     }
 
     private void configFile() {

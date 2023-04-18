@@ -14,8 +14,8 @@ public class Scrap {
         }catch (Exception e){
             System.out.println("Site indisponível");
         }
-        for(Element element : doc.getElementsByClass("sc-29427738-0 sc-d58c749b-1 ILliQ jsHA-dC")){
-            System.out.println(link);
-        }
+        //for(Element element : doc.getElementsByClass("sc-29427738-0 sc-d58c749b-1 ILliQ jsHA-dC")){
+         //   System.out.println(link);
+       // }
     }
 }
