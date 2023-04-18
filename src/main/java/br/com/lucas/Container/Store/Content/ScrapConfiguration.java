@@ -11,6 +11,7 @@ public class ScrapConfiguration {
 
     public ScrapConfiguration(){
         configFile();
+        Scrap.search("https://opensea.io/collection/azuki/analytics", writer);
     }
 
     private void configFile() {
@@ -31,10 +32,8 @@ public class ScrapConfiguration {
         }
     }
     private void executar(){
-        while(true){
-
-
-        }
+        String url = "https://opensea.io/collection/azuki/analytics";
+        Scrap.search(url, writer);
     }
 
     private void formateLink(String collection){
