@@ -27,12 +27,11 @@ public class ContainerStoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ContainerStoreApplication.class, args);
 
-		String html = "https://opensea.io/collection/azuki/analytics";
+		String html = "https://coinmarketcap.com/pt-br/currencies/bitcoin/";
 		try{
-			Document doc = Jsoup.connect(html).userAgent("Mozilla").get();;
-			Elements elements = doc.getElementsByClass("sc-29427738-0 sc-d58c749b-1 ILliQ jsHA-dC");
-			Element priceelenmnt = doc.select("sc-29427738-0 sc-d58c749b-1 ILliQ jsHA-dC").first();
-			System.out.println(priceelenmnt);
+			Document doc = Jsoup.connect(html).userAgent("Mozilla").get();
+			Elements elements = doc.getElementsByClass("priceValue");
+
 			for(Element c: elements){
 				System.out.println(c);
 			}
