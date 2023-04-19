@@ -1,42 +1,31 @@
 package br.com.lucas.Container.Store.Content;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 public class ScrapConfiguration {
-    private String path= "C:\\Users\\lemos\\IdeaProjects\\PROJETOS 2.0\\Container-Store\\src\\main\\java\\br\\com\\lucas\\Container\\Store\\Content\\WebScraping.txt";
-    private String link  = "https://opensea.io/collection/analytics";
-    private OutputStreamWriter writer;
+    
 
-    public ScrapConfiguration(){
-        configFile();
-       executar();
-    }
+    public void metodo() {
+        String html = "https://www.nft-stats.com/collection/thecaptainz";
+        try {
+            Document doc = Jsoup.connect(html).userAgent("Mozilla").get();
+            Elements elements = doc.getElementsByClass("card-text font-content text-nowrap");
+            Element divExemplo = elements.get(3);
 
-    private void configFile() {
-        try{
-            File archirve = new File(path);
-
-            if(!archirve.exists()){
-                archirve.createNewFile();
-
-            }
-            writer = new OutputStreamWriter(new FileOutputStream(archirve), "UTF-8");
-            writer.write("Floor Price\tVolume\tSales");
-            writer.flush();
+            System.out.println(divExemplo);
 
 
-        }catch (Exception e){
+        } catch (
+                IOException e) {
             e.printStackTrace();
         }
-    }
-    private void executar(){
-        String url = "https://opensea.io/collection/azuki/analytics";
-        Scrap.search(url, writer);
-    }
-
-    private void formateLink(String collection){
-        this.link = "https://opensea.io/collection/"+collection+"/analytics";
     }
 }
