@@ -27,18 +27,9 @@ public class ContainerStoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ContainerStoreApplication.class, args);
 
-		String html = "https://www.nft-stats.com/collection/thecaptainz";
-		try{
-			Document doc = Jsoup.connect(html).userAgent("Mozilla").get();
-			Elements elements = doc.getElementsByClass("card-text font-content text-nowrap");
-			Element divExemplo = elements.get(3);
-
-			System.out.println(divExemplo);
-
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		ScrapConfiguration scrapConfiguration = new ScrapConfiguration();
+		String texto = scrapConfiguration.formatingLink("azuki");
+		scrapConfiguration.scrapingGenerate(texto);
 
 	}
 

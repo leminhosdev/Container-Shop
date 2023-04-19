@@ -11,16 +11,19 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 public class ScrapConfiguration {
-    
 
-    public void metodo() {
-        String html = "https://www.nft-stats.com/collection/thecaptainz";
+
+
+    public String formatingLink(String url) {
+        return "https://www.nft-stats.com/collection/" + url;
+    }
+    public void scrapingGenerate(String url){
         try {
-            Document doc = Jsoup.connect(html).userAgent("Mozilla").get();
+            Document doc = Jsoup.connect(url).userAgent("Mozilla").get();
             Elements elements = doc.getElementsByClass("card-text font-content text-nowrap");
             Element divExemplo = elements.get(3);
 
-            System.out.println(divExemplo);
+            System.out.println(divExemplo.text());
 
 
         } catch (
