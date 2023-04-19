@@ -27,14 +27,16 @@ public class ContainerStoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ContainerStoreApplication.class, args);
 
-		String html = "https://coinmarketcap.com/pt-br/currencies/bitcoin/";
+		String html = "https://www.nft-stats.com/collection/azuki";
 		try{
 			Document doc = Jsoup.connect(html).userAgent("Mozilla").get();
-			Elements elements = doc.getElementsByClass("priceValue");
+			Elements elements = doc.getElementsByClass("card-text font-content text-nowrap");
+			Element divExemplo = elements.get(3);
 
-			for(Element c: elements){
-				System.out.println(c);
-			}
+			System.out.println(divExemplo);
+			//String preço = subContent.text();
+			//System.out.println(preço);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
