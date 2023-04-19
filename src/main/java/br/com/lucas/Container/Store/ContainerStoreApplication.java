@@ -28,9 +28,9 @@ public class ContainerStoreApplication {
 		SpringApplication.run(ContainerStoreApplication.class, args);
 
 		ScrapConfiguration scrapConfiguration = new ScrapConfiguration();
-		String texto = scrapConfiguration.formatingLink("azuki");
-		String top = scrapConfiguration.scrapingGenerate(texto);
-		System.out.println(top);
+
+		scrapConfiguration.scrapingGenerate("azuki");
+
 	}
 
 

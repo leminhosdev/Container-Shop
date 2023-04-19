@@ -1,5 +1,6 @@
 package br.com.lucas.Container.Store.Content;
 
+import br.com.lucas.Container.Store.entity.Scrap;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,20 +10,34 @@ import java.io.*;
 
 public class ScrapConfiguration {
 
-
-
-    public String formatingLink(String url) {
-        return "https://www.nft-stats.com/collection/" + url;
+    private String formatingLink(String collectionName) {
+        return "https://www.nft-stats.com/collection/" + collectionName;
     }
-    public String scrapingGenerate(String url){
-        Document docc = null;
+
+
+    public Scrap scrapingGenerate(String collectionName){
+
+        String url = formatingLink(collectionName);
+
         try {
+
             Document doc = Jsoup.connect(url).userAgent("Mozilla").get();
             Elements elements = doc.getElementsByClass("card-text font-content text-nowrap");
-            Element divExemplo = elements.get(3);
+            Element fp = elements.get(3);
+            Element owners = elements.get(5);
+            Element volume = elements.get(1);
 
-            //System.out.println(divExemplo.text());
-            return divExemplo.text();
+            Scrap nft = Scrap.builder().floorPrice(fp.text())
+                    .link(url).
+                    owners(owners.text()).
+                    tradingVolume(volume.text()).collectionName(collectionName).build();
+
+
+            System.out.println(owners.text());
+            System.out.println(volume.text());
+
+
+            return nft;
 
         } catch (
                 IOException e) {
