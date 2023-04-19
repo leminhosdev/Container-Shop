@@ -16,8 +16,8 @@ public class ScrapController {
     @PostMapping
     public String Search( @RequestBody String url){
        String formatedUrl = scrapConfiguration.formatingLink(url);
-       scrapConfiguration.scrapingGenerate(formatedUrl);
-        return "oi";
+       return scrapConfiguration.scrapingGenerate(formatedUrl);
+
     }
 
 }

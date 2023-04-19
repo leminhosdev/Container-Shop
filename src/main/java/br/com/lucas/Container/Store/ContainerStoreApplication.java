@@ -29,8 +29,8 @@ public class ContainerStoreApplication {
 
 		ScrapConfiguration scrapConfiguration = new ScrapConfiguration();
 		String texto = scrapConfiguration.formatingLink("azuki");
-		scrapConfiguration.scrapingGenerate(texto);
-
+		String top = scrapConfiguration.scrapingGenerate(texto);
+		System.out.println(top);
 	}
 
 
