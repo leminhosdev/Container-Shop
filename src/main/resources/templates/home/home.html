@@ -43,6 +43,7 @@
 		}
 
 	#resultado-pesquisa {
+
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -67,7 +68,7 @@
 	</script>
 <body>
 <div id="resultado-pesquisa" th:if="${not #lists.isEmpty(resultados)}">
-  <h1>Resultados da pesquisa</h1>
+  <h1 style="color: orange">Resultados da pesquisa</h1>
   <ul>
     <li th:each="resultado : ${resultados}">
       <a th:href="${resultado.link}" th:text="${resultado.floorPrice + ' - ' + resultado.collectionName}"></a>
