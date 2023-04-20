@@ -16,7 +16,7 @@ public class Scrap {
     @Column(name = "collectionName", nullable = false,  unique = true)
     private String collectionName;
     @Column(name = "floorPrice", nullable = false)
-    private String floorPrice;
+    private Double floorPrice;
     @Column(name = "tradingVolume", nullable = false)
     private String tradingVolume;
     @Column(name = "owners", nullable = false)

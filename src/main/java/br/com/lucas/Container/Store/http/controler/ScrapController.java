@@ -21,14 +21,14 @@ public class ScrapController {
     private ScrapConfiguration scrapConfiguration;
     private ScrapServiceImpl scrapService;
     private InitialController initialController;
-   /* @PostMapping("/savenft")
+    @PostMapping("/savenft")
     @ResponseStatus(HttpStatus.CREATED)
     public ModelAndView Search( @RequestParam @Valid String collection){
         ModelAndView mv = new ModelAndView("home/home");
         Scrap nft = scrapConfiguration.scrapingGenerate(collection);
         scrapService.saving(nft);
         return mv;
-    } */
+    }
     @GetMapping("/savenft")
     public String nftsave(@RequestParam("collection") String collection, Model model){
         Scrap nft = scrapConfiguration.scrapingGenerate(collection);

@@ -25,10 +25,12 @@ public class ScrapConfiguration {
             Document doc = Jsoup.connect(url).userAgent("Mozilla").get();
             Elements elements = doc.getElementsByClass("card-text font-content text-nowrap");
             Element fp = elements.get(3);
+            String formarTedfp = fp.text().replace("Ξ","");
+            double florPriceDouble = Double.parseDouble(formarTedfp);
             Element owners = elements.get(5);
             Element volume = elements.get(1);
 
-            Scrap nft = Scrap.builder().floorPrice(fp.text())
+            Scrap nft = Scrap.builder().floorPrice(florPriceDouble)
                     .link(url).
                     owners(owners.text()).
                     tradingVolume(volume.text()).collectionName(collectionName).build();
