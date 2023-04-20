@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Resultados da pesquisa</h1>
+<ul>
+    <li th:each="scrap : ${resultados}">
+        <span th:text="${scrap.floorPrice}"></span> -
+        <span th:text="${scrap.collectionName}"></span>
+    </li>
+</ul>
+</body>
+</html>

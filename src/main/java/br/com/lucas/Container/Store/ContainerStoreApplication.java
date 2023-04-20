@@ -29,7 +29,7 @@ public class ContainerStoreApplication {
 
 		ScrapConfiguration scrapConfiguration = new ScrapConfiguration();
 
-		scrapConfiguration.scrapingGenerate("azuki");
+		//scrapConfiguration.scrapingGenerate("azuki");
 
 	}
 

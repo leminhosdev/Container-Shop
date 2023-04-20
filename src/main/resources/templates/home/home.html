@@ -1,10 +1,10 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <title>Tela de logout</title>
   <style>
     body {
-	background-color: black;
+	background-color: grey;
 	margin: 0;
 	padding: 0;
 	font-family: 'Press Start 2P', cursive;
@@ -49,9 +49,18 @@
   <a onclick="logout()">Logout</a>
 </div>
 <div class="content">
-  <form>
-    <input type="text" class="search-box" placeholder="Pesquisar...">
+  <form action="/home/pesquisar" method="GET">
+    <input type="text" name="termo" placeholder="Pesquisar...">
+    <button type="submit">Pesquisar</button>
   </form>
+  <div id="resultado-pesquisa" th:if="${not #lists.isEmpty(resultados)}">
+    <h1>Resultados da pesquisa</h1>
+    <ul>
+      <li th:each="resultado : ${resultados}">
+        <a th:href="${resultado.link}" th:text="${termoPesquisa + ' - ' + resultado.collectionName}"></a>
+      </li>
+    </ul>
+  </div>
 </div>
 <script>
 		function logout() {
@@ -59,5 +68,6 @@
 			window.location.href = "/logout";
 		}
 	</script>
+<body>
 </body>
 </html>

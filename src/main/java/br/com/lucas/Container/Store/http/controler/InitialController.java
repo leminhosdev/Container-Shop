@@ -1,21 +1,31 @@
 package br.com.lucas.Container.Store.http.controler;
 
+import br.com.lucas.Container.Store.Content.ScrapConfiguration;
 import br.com.lucas.Container.Store.entity.Cliente;
 import br.com.lucas.Container.Store.entity.Profile;
+import br.com.lucas.Container.Store.entity.Scrap;
 import br.com.lucas.Container.Store.repository.Cliente_repository;
 import br.com.lucas.Container.Store.service.ClienteServiceImpl;
 import br.com.lucas.Container.Store.util.PasswordUtil;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
+@AllArgsConstructor
 public class InitialController {
     @Autowired
 
     private ClienteServiceImpl clienteService;
     @Autowired
     private Cliente_repository clienteRepository;
+
+    private final ScrapConfiguration scrapConfiguration;
 
     @GetMapping("/register")
     public ModelAndView register(){
@@ -55,6 +65,20 @@ public class InitialController {
     @GetMapping("/home")
     public ModelAndView homePage(){
         ModelAndView mv = new ModelAndView("home/home");
+        mv.addObject("termoPesquisa","");
         return mv;
     }
+    @GetMapping("/home/pesquisar")
+    public ModelAndView pesquisar(@RequestParam("termo") String termo) {
+        Scrap nft = scrapConfiguration.scrapingGenerate(termo);
+        List<Scrap> resultados = new ArrayList<>();
+        resultados.add(nft);
+        ModelAndView modelAndView = new ModelAndView("home/home");
+        modelAndView.addObject("termoPesquisa", termo);
+        modelAndView.addObject("resultados", resultados);
+        return modelAndView;
+    }
+
+
+
 }
