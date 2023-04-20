@@ -21,7 +21,7 @@
 }
 
 .content {
-	margin-top: 50px;
+	margin-top: -220px;
 	padding: 20px;
 	display: flex;
     justify-content: center;
@@ -42,6 +42,11 @@
 	outline: none;
 		}
 
+	#resultado-pesquisa {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
   </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
 </head>
@@ -50,17 +55,9 @@
 </div>
 <div class="content">
   <form action="/home/pesquisar" method="GET">
-    <input type="text" name="termo" placeholder="Pesquisar...">
+    <input type="text" name="termo" class="" placeholder="Pesquisar...">
     <button type="submit">Pesquisar</button>
   </form>
-  <div id="resultado-pesquisa" th:if="${not #lists.isEmpty(resultados)}">
-    <h1>Resultados da pesquisa</h1>
-    <ul>
-      <li th:each="resultado : ${resultados}">
-        <a th:href="${resultado.link}" th:text="${termoPesquisa + ' - ' + resultado.collectionName}"></a>
-      </li>
-    </ul>
-  </div>
 </div>
 <script>
 		function logout() {
@@ -69,5 +66,13 @@
 		}
 	</script>
 <body>
+<div id="resultado-pesquisa" th:if="${not #lists.isEmpty(resultados)}">
+  <h1>Resultados da pesquisa</h1>
+  <ul>
+    <li th:each="resultado : ${resultados}">
+      <a th:href="${resultado.link}" th:text="${resultado.floorPrice + ' - ' + resultado.collectionName}"></a>
+    </li>
+  </ul>
+</div>
 </body>
 </html>
