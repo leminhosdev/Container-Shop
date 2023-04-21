@@ -66,6 +66,7 @@
 <div>
   <form action="/home/pesquisar" method="POST" >
     <label>Salvar resultados da pesquisa?</label>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <input type="submit" value="Salvar">
   </form>
 </div>
