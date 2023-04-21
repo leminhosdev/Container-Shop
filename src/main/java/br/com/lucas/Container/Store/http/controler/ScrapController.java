@@ -27,26 +27,6 @@ public class ScrapController {
     private ScrapServiceImpl scrapService;
     private InitialController initialController;
     private Scrap_repository scrapRepository;
-   /* @PostMapping("/home/pesquisar/salvar")
-    public ModelAndView Search(HttpSession session){
-        List<Scrap> resultados = (List<Scrap>) session.getAttribute("resultados");
-        resultados.forEach(collection -> scrapService.saving(collection));
-        List<String> pesquisasSalvas = (List<String>) session.getAttribute("pesquisasSalvas");
-        if (pesquisasSalvas == null) {
-            pesquisasSalvas = new ArrayList<>();
-        }
-        pesquisasSalvas.add(resultados.get(0).getLink());
-        session.setAttribute("pesquisasSalvas", pesquisasSalvas);
-        ModelAndView mv = new ModelAndView("home/home");
-        mv.addObject("resultados", resultados);
-        mv.addObject("mensagem", "Pesquisa salva com sucesso!");
-        return mv;
-    }
-    @GetMapping("/home/pesquisar/salvar")
-    public ModelAndView top(){
-        System.out.println("oi");
-        ModelAndView modelAndView = new ModelAndView("home/home");
-        return modelAndView;
-    }
-*/
+
+
 }

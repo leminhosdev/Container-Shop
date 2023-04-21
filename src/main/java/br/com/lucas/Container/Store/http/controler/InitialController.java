@@ -12,6 +12,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,6 +33,16 @@ public class InitialController {
     private final ScrapConfiguration scrapConfiguration;
 
     private ScrapServiceImpl scrapService;
+
+    public String emailSession(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String userEmail = (userDetails.getUsername());
+        return userEmail;
+    }
+
+
+
     @GetMapping("/register")
     public ModelAndView register(){
         ModelAndView mv = new ModelAndView("cliente/register");
@@ -39,7 +52,7 @@ public class InitialController {
     }
 
     @PostMapping("/register")
-    public ModelAndView register(@ModelAttribute @RequestBody @Valid Cliente cliente){
+    public ModelAndView register(@ModelAttribute @RequestBody @Valid Cliente cliente, HttpSession session){
         ModelAndView mv = new ModelAndView("cliente/register");
         mv.addObject("user", cliente);
         String passwordEnconder = PasswordUtil.encoder(cliente.getPassword());
@@ -47,12 +60,12 @@ public class InitialController {
         try {
             System.out.println("saved");
             clienteService.saving(cliente);
-            return loginFE();
+           return loginFE();
         }catch (Exception e){
             mv.addObject(e.getMessage());
             System.out.println("deu b.o salvando");
         }
-        return loginFE();
+       return loginFE();
     }
 
     @GetMapping("/login")
@@ -80,6 +93,7 @@ public class InitialController {
         modelAndView.addObject("termoPesquisa", termo);
         modelAndView.addObject("resultados", resultados);
         httpSession.setAttribute("resultados", resultados);
+        System.out.println(emailSession());
         return modelAndView;
     }
 
