@@ -6,7 +6,9 @@ import br.com.lucas.Container.Store.entity.Profile;
 import br.com.lucas.Container.Store.entity.Scrap;
 import br.com.lucas.Container.Store.repository.Cliente_repository;
 import br.com.lucas.Container.Store.service.ClienteServiceImpl;
+import br.com.lucas.Container.Store.service.ScrapServiceImpl;
 import br.com.lucas.Container.Store.util.PasswordUtil;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ public class InitialController {
 
     private final ScrapConfiguration scrapConfiguration;
 
+    private ScrapServiceImpl scrapService;
     @GetMapping("/register")
     public ModelAndView register(){
         ModelAndView mv = new ModelAndView("cliente/register");
@@ -69,14 +72,31 @@ public class InitialController {
         return mv;
     }
     @GetMapping("/home/pesquisar")
-    public ModelAndView pesquisar(@RequestParam("termo") String termo) {
+    public ModelAndView pesquisar(@RequestParam("termo") String termo, HttpSession httpSession) {
         Scrap nft = scrapConfiguration.scrapingGenerate(termo);
         List<Scrap> resultados = new ArrayList<>();
         resultados.add(nft);
         ModelAndView modelAndView = new ModelAndView("home/home");
         modelAndView.addObject("termoPesquisa", termo);
         modelAndView.addObject("resultados", resultados);
+        httpSession.setAttribute("resultados", resultados);
         return modelAndView;
+    }
+
+    @PostMapping("/home/pesquisar")
+    public ModelAndView Search(HttpSession session){
+        List<Scrap> resultados = (List<Scrap>) session.getAttribute("resultados");
+        resultados.forEach(collection -> scrapService.saving(collection));
+        List<String> pesquisasSalvas = (List<String>) session.getAttribute("pesquisasSalvas");
+        if (pesquisasSalvas == null) {
+            pesquisasSalvas = new ArrayList<>();
+        }
+        pesquisasSalvas.add(resultados.get(0).getLink());
+        session.setAttribute("pesquisasSalvas", pesquisasSalvas);
+        ModelAndView mv = new ModelAndView("home/home");
+        mv.addObject("resultados", resultados);
+        mv.addObject("mensagem", "Pesquisa salva com sucesso!");
+        return mv;
     }
 
 
