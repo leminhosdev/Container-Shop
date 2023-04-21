@@ -23,4 +23,8 @@ public class Scrap {
     private String owners;
     @Column(name = "link", nullable = false)
     private String link;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 }

@@ -35,4 +35,7 @@ public class Cliente  {
     @Size(min = 8, message = "Your password must have minimum 8 digits")
     private String password;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Scrap> nfts = new ArrayList<>();
+
 }
