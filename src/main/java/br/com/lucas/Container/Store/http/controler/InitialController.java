@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,6 +35,7 @@ public class InitialController {
     private final ScrapConfiguration scrapConfiguration;
 
     private ScrapServiceImpl scrapService;
+    private ClienteController clienteController;
 
     public String emailSession(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -47,14 +49,16 @@ public class InitialController {
     @GetMapping("/register")
     public ModelAndView register(){
         ModelAndView mv = new ModelAndView("cliente/register");
+        System.out.println("oi");
         mv.addObject("user", new Cliente());
         mv.addObject("profiles", Profile.values());
         return mv;
     }
 
     @PostMapping("/register")
-    public ModelAndView register(@ModelAttribute @RequestBody @Valid Cliente cliente, HttpSession session){
+    public ModelAndView register(@ModelAttribute @RequestBody @Valid Cliente cliente){
         ModelAndView mv = new ModelAndView("cliente/register");
+        System.out.println("oi");
         mv.addObject("user", cliente);
         String passwordEnconder = PasswordUtil.encoder(cliente.getPassword());
         cliente.setPassword(passwordEnconder);
@@ -76,6 +80,7 @@ public class InitialController {
     }
     @GetMapping("/inicio")
     public ModelAndView initialPage(){
+        System.out.println("Oi");
         ModelAndView mv = new ModelAndView("inicio/inicio");
         return mv;
     }
@@ -107,10 +112,10 @@ public class InitialController {
         Cliente clienteUpdated = Cliente.builder().name(cliente.getName())
                 .id(cliente.getId()).email(cliente.getEmail()).
                 password(cliente.getPassword()).
-                cpf(cliente.getCpf()).nfts(resultados).build();
-
+                cpf(cliente.getCpf()).build();
+            clienteService.saving(clienteUpdated);
         System.out.println(resultados.get(0).getLink());
-        resultados.forEach(collection -> scrapService.saving(collection));
+       // resultados.forEach(collection -> scrapService.saving(collection));
         List<String> pesquisasSalvas = (List<String>) session.getAttribute("pesquisasSalvas");
         if (pesquisasSalvas == null) {
             pesquisasSalvas = new ArrayList<>();

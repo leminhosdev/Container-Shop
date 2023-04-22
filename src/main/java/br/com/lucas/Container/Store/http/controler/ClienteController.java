@@ -40,9 +40,11 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente save(@RequestBody @Valid Cliente cliente){
        String HashMapPassword = PasswordUtil.encoder(cliente.getPassword());
-       cliente.setPassword(HashMapPassword);
+        cliente.setPassword(HashMapPassword);
         return clienteService.saving(cliente);
     }
+
+
     @GetMapping(path = "/list")
     @ResponseStatus(HttpStatus.OK)
     public Page<Cliente> listCliente(ClientFilter clientFilter, Pageable pageable){
