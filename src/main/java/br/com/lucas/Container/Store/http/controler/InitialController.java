@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -93,6 +94,7 @@ public class InitialController {
         modelAndView.addObject("termoPesquisa", termo);
         modelAndView.addObject("resultados", resultados);
         httpSession.setAttribute("resultados", resultados);
+
         System.out.println(emailSession());
         return modelAndView;
     }
@@ -100,6 +102,14 @@ public class InitialController {
     @PostMapping("/home/pesquisar")
     public ModelAndView Search(HttpSession session){
         List<Scrap> resultados = (List<Scrap>) session.getAttribute("resultados");
+        Cliente cliente = clienteRepository.findByEmail(emailSession()).
+                orElseThrow(() -> new UsernameNotFoundException("Email not found"));
+        Cliente clienteUpdated = Cliente.builder().name(cliente.getName())
+                .id(cliente.getId()).email(cliente.getEmail()).
+                password(cliente.getPassword()).
+                cpf(cliente.getCpf()).nfts(resultados).build();
+
+        System.out.println(resultados.get(0).getLink());
         resultados.forEach(collection -> scrapService.saving(collection));
         List<String> pesquisasSalvas = (List<String>) session.getAttribute("pesquisasSalvas");
         if (pesquisasSalvas == null) {
