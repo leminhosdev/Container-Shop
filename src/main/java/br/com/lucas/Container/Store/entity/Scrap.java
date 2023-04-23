@@ -3,6 +3,9 @@ package br.com.lucas.Container.Store.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,7 +16,7 @@ public class Scrap {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "collectionName", nullable = false,  unique = true)
+    @Column(name = "collectionName", nullable = false)
     private String collectionName;
     @Column(name = "floorPrice", nullable = false)
     private Double floorPrice;
@@ -24,7 +27,6 @@ public class Scrap {
     @Column(name = "link", nullable = false)
     private String link;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    @ManyToMany(mappedBy = "nfts")
+    private List<Cliente> cliente = new ArrayList<>();
 }

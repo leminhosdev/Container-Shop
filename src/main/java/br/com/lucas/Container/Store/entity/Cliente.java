@@ -35,7 +35,13 @@ public class Cliente  {
     @Size(min = 8, message = "Your password must have minimum 8 digits")
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "cliente_nfts",
+            joinColumns = { @JoinColumn(name = "cliente_id") },
+            inverseJoinColumns = { @JoinColumn(name = "nfts_id") }
+    )
+
     private List<Scrap> nfts = new ArrayList<>();
 
 }

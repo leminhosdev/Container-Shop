@@ -112,7 +112,7 @@ public class InitialController {
         Cliente clienteUpdated = Cliente.builder().name(cliente.getName())
                 .id(cliente.getId()).email(cliente.getEmail()).
                 password(cliente.getPassword()).
-                cpf(cliente.getCpf()).build();
+                cpf(cliente.getCpf()).nfts(resultados).build();
             clienteService.saving(clienteUpdated);
         System.out.println(resultados.get(0).getLink());
        // resultados.forEach(collection -> scrapService.saving(collection));
