@@ -47,10 +47,21 @@
 	display: flex;
     justify-content: center;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: -700vh;
 }
 .verticalink{
   display: block;
 }
+
+
+
+
+
+
+
   </style>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,21 +69,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <div class="logout-bar">
-  <a onclick="logout()">Logout</a>
+  <a class="logouto" onclick="logout()">Logout</a>
 </div>
-<div class="content">
-  <form action="/home/pesquisar" method="GET">
-    <input type="text" name="termo" class="search-box" placeholder="Search collection">
-    <button type="submit">Search</button>
-  </form>
-</div>
-<div>
-  <form action="/home/pesquisar" method="POST" >
-    <label>Salvar resultados da pesquisa?</label>
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <input type="submit" value="Salvar">
-  </form>
-</div>
+
 <script>
 		function logout() {
 			// Simulando uma ação de logout redirecionando para a página de login
@@ -80,11 +79,26 @@
 		}
 	</script>
 <body>
+<div>
+  <div class="content">
+    <form action="/home/pesquisar" method="GET">
+      <input type="text" name="termo" class="search-box" placeholder="Search collection">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <form action="/home/pesquisar" method="POST" >
+    <label>Salvar resultados da pesquisa?</label>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <input type="submit" value="Salvar">
+  </form>
+</div>
+
+
 <div id="resultado-pesquisa" th:if="${not #lists.isEmpty(resultados)}">
-  <h1 style="color: orange">Resultados da pesquisa</h1>
   <ul>
     <li th:each="resultado : ${resultados}">
-      <h3 th:text="${resultado.collectionName}"></h3>
+      <h1 th:text="${resultado.collectionName}"></h1>
       <p th:text="${resultado.tradingVolume}"></p>
       <p th:text="${resultado.floorPrice}"></p>
       <p th:text="${resultado.owners}"></p>
