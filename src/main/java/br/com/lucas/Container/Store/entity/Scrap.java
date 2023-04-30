@@ -26,6 +26,8 @@ public class Scrap {
     private String owners;
     @Column(name = "link", nullable = false)
     private String link;
+    @Column(name = "profilePicture", nullable = false)
+    private String profilePicture;
 
     @ManyToMany(mappedBy = "nfts")
     private List<Cliente> cliente = new ArrayList<>();

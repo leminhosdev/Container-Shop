@@ -95,6 +95,8 @@ public class InitialController {
         Scrap nft = scrapConfiguration.scrapingGenerate(termo);
         List<Scrap> resultados = new ArrayList<>();
         resultados.add(nft);
+        System.out.println(nft.getProfilePicture());
+
         ModelAndView modelAndView = new ModelAndView("home/home");
         modelAndView.addObject("termoPesquisa", termo);
         modelAndView.addObject("resultados", resultados);
@@ -115,6 +117,7 @@ public class InitialController {
                 cpf(cliente.getCpf()).nfts(resultados).build();
             clienteService.saving(clienteUpdated);
         System.out.println(resultados.get(0).getLink());
+        System.out.println(resultados.get(0).getProfilePicture());
        // resultados.forEach(collection -> scrapService.saving(collection));
         List<String> pesquisasSalvas = (List<String>) session.getAttribute("pesquisasSalvas");
         if (pesquisasSalvas == null) {
