@@ -44,15 +44,21 @@
 
 	#resultado-pesquisa {
 
-	position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
+
 }
 .verticalink{
   display: block;
 }
+.listaItens{
+  text-align: center;
+  align-items: center;
+  margin-top: -500px;
+  display: flex;
+  justify-content: center;
+}
+.containerPrincipal{
 
+}
 
 
 
@@ -76,6 +82,7 @@
 		}
 	</script>
 <body>
+
 <div>
   <div class="content">
     <form action="/home/pesquisar" method="GET">
@@ -83,6 +90,7 @@
       <button type="submit">Search</button>
     </form>
   </div>
+
 </div>
   <div class="">
   <form action="/home/pesquisar" method="POST" >
@@ -91,17 +99,21 @@
     <input type="submit" value="Salvar">
   </form>
 </div>
+<div class="conteinerPrincipal">
 <div id="resultado-pesquisa" th:if="${not #lists.isEmpty(resultados)}">
+      <img th:each="resultado : ${resultados}" th:src="${resultado.profilePicture}"/>
+  </div>
+<div class="listaItens">
   <ul>
     <li th:each="resultado : ${resultados}">
       <h1 th:text="${resultado.collectionName}"></h1>
-      <p th:text="${resultado.tradingVolume}"></p>
-      <p th:text="${resultado.floorPrice}"></p>
-      <p th:text="${resultado.owners}"></p>
-      <img th:src="${resultado.profilePicture}"/>
+      <h3 th:text="${resultado.tradingVolume}"></h3>
+      <h3 th:text="${resultado.floorPrice}"></h3>
+      <h3 th:text="${resultado.owners}"></h3>
       <br>
     </li>
   </ul>
+</div>
 </div>
 </body>
 </html>
