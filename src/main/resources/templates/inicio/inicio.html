@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Página Inicial</title>
+  <title>Start</title>
   <style>
     .container {
     max-width: 600px;
@@ -42,8 +42,9 @@ p {
 </head>
 <body>
 <div class="container">
-  <h1>Bem-vindo(a)!</h1>
-  <p>Escolha uma opção:</p>
+  <img src="https://cdn-icons-png.flaticon.com/512/6229/6229134.png" style="width: 100px; height: 100px">
+  <h1>Welcome!</h1>
+  <p>Choose an option:</p>
   <div class="buttons">
     <a th:href="@{/register}" class="btn">Create account</a> <!-- Botão para a página de registro -->
     <a th:href="@{/login}" class="btn">Login</a> <!-- Botão para a página de login -->

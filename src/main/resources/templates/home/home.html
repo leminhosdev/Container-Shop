@@ -33,6 +33,7 @@ height: 30px;
     justify-content: center;
 	align-items: center;
 	height: calc(100vh - 110px);
+	padding-top: -100px;
 }
 .search-box {
 	background-color: white;
@@ -153,7 +154,7 @@ background-color: #026b1e;
 
 
 <div class="conteinerPrincipal" th:if="${#lists.isEmpty(resultados)}">
-  <p>Nenhum resultado encontrado para a pesquisa: </p>
+
   </div>
 <div class="listaItens" th:unless="${#lists.isEmpty(resultados)}">
   <ul>
