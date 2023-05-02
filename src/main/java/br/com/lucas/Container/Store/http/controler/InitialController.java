@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @AllArgsConstructor
@@ -92,15 +93,23 @@ public class InitialController {
     }
     @GetMapping("/home/pesquisar")
     public ModelAndView pesquisar(@RequestParam("termo") String termo, HttpSession httpSession) {
+        termo = termo.trim();
+        termo = termo.replace(' ', '-');
+        termo = termo.toLowerCase();
+
         Scrap nft = scrapConfiguration.scrapingGenerate(termo);
         List<Scrap> resultados = new ArrayList<>();
         resultados.add(nft);
+        String notExists = "None results found";
         System.out.println(nft.getProfilePicture());
 
         ModelAndView modelAndView = new ModelAndView("home/home");
-        modelAndView.addObject("termoPesquisa", termo);
-        modelAndView.addObject("resultados", resultados);
-        httpSession.setAttribute("resultados", resultados);
+
+
+
+            modelAndView.addObject("termoPesquisa", termo);
+            modelAndView.addObject("resultados", resultados);
+            httpSession.setAttribute("resultados", resultados);
 
         System.out.println(emailSession());
         return modelAndView;

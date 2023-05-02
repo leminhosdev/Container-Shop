@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
-  <title>Tela de logout</title>
+  <title>NFTS project</title>
   <style>
     body {
 	background-color: #e6e6e6;
@@ -152,11 +152,10 @@ background-color: #026b1e;
 
 
 
-<div class="conteinerPrincipal">
-  <div id="resultado-pesquisa" th:if="${#lists.isEmpty(resultados)}">
-
+<div class="conteinerPrincipal" th:if="${#lists.isEmpty(resultados)}">
+  <p>Nenhum resultado encontrado para a pesquisa: </p>
   </div>
-<div class="listaItens">
+<div class="listaItens" th:unless="${#lists.isEmpty(resultados)}">
   <ul>
     <li th:each="resultado : ${resultados}">
       <h1 th:text="${resultado.collectionName}"></h1>
@@ -176,6 +175,6 @@ background-color: #026b1e;
   </ul>
 
 </div>
-</div>
+
 </body>
 </html>
