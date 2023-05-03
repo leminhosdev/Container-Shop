@@ -27,6 +27,14 @@ This is the main screen, here you will be able to search for collectons like Azu
 * Owners
  
 Some actions like buying a nft, are working but aren't 100%, i'm still working on that, that its just he firsts steps, we will talk about this in the next topic.  
+![image](https://user-images.githubusercontent.com/119766126/235918466-151e03eb-5e01-44e9-a546-5d2ba4660c0d.png)
+
+
+
+# DEMO VIDEO 🎞
+here is the uploaded video for that you can see the project runing: 
+
+* https://www.youtube.com/watch?v=-80bnJeJiyk 🔊
 
 ## Futures updates
 
